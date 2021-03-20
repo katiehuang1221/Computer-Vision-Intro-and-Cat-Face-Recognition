@@ -20,10 +20,10 @@ for (x,y,w,h) in faces_rect:
     faces_roi = gray[y:y+h, x:x+h]
 
     label, confidence = face_recognizer.predict(faces_roi)
-    print(f'Label = {people[label]} with a confidence of {confidence}')
+    print(f'Label = {cats[label]} with a confidence of {confidence}')
 
     # cv.putText(img, "Hello", (y,x), cv.FONT_HERSHEY_COMPLEX, 1.0, (0,255,0))
-    cv.putText(img, str(people[label]), (x,y-50), cv.FONT_HERSHEY_COMPLEX, 2.0, (0,255,0), thickness=2)
+    cv.putText(img, str(cats[label]), (x,y-50), cv.FONT_HERSHEY_COMPLEX, 2.0, (0,255,0), thickness=2)
     cv.rectangle(img, (x,y), (x+w, y+h), (0,255,0), thickness=2)
     
 cv.imshow('Detected Cat Face', img)
