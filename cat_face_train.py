@@ -2,25 +2,19 @@ import os
 import cv2 as cv
 import numpy as np
 
-people = ['Noodle', 'Chiffon','Cheddar']
+cats = ['Noodle', 'Chiffon','Cheddar']
 DIR = r'/Users/katiehuang/Documents/CV/Cat_faces/'
-
-# p=[]
-# for i in os.listdir(r'/Users/katiehuang/Documents/CV/Faces'):
-#     p.append(i)
-# print(p)
 
 haar_cascade = cv.CascadeClassifier('haar_catface.xml')
 
 features = []
 labels = []
 
-
 def create_train():
-    for person in people:
+    for cat in cats:
         path = os.path.join(DIR, person)
         print(path)
-        label = people.index(person)
+        label = cats.index(person)
 
         for img in os.listdir(path):
             if img != '.DS_Store':
@@ -41,7 +35,6 @@ print('Training done---------')
 
 # print(f'Length of the features = {len(features)}')
 
-
 features = np.array(features,dtype='object')
 labels = np.array(labels)
 
@@ -51,7 +44,3 @@ face_recognizer.train(features,labels)
 face_recognizer.save('cat_face_trained.yml')
 np.save('cat_features.npy', features)
 np.save('cat_labels.npy',labels)
-
-
-
-# cv.waitKey(0)
